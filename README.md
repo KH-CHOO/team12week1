@@ -1,2 +1,2 @@
 # team12week1
-테스트용
+이곳은 main
