@@ -15,12 +15,24 @@
 
     <style>
         .hero {
+            background-image: url('https://th.bing.com/th/id/R.f8a7a3463ab4f74890ad748c736bc135?rik=ut3cfCpacpMVhw&riu=http%3a%2f%2fupload.filesun.com%2fbbsdisk%2f2019%2f01%2f29%2f0129_2014_1548769333.jpg&ehk=JcQCHOMLvPfysBjBB5w9vGNUG70BXIzEVQfdTwOrId4%3d&risl=&pid=ImgRaw&r=0') !important;
+            background-size: cover;
+            background-position: center;
             margin-bottom: 50px;
         }
 
         .card:hover {
-            transform: scale(1.02);
+            transform: scale(1.025);
+            transition: transform 0.3s ease;
             filter: brightness(90%);
+        }
+
+        .spacer {
+            .spacer {
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
+
         }
     </style>
 
@@ -31,7 +43,8 @@
         <h1 class="text-white">12조</h1>
         <h2 class="text-white">팀 프로젝트</h2>
     </div>
-    <div class="container">
+    <div class="container-fluid">
+        <div class="spacer"></div>
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card">
@@ -41,7 +54,8 @@
                         <h5 class="card-title">짱구</h5>
                         <h6 class="card-subtitle mb-2 text-muted">주인공</h6>
                         <p class="card-text">내 이름은 신짱구! 훌라훌라</p>
-                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8" class="card-link stretched-link" target="_blank"></a>
+                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8"
+                            class="card-link stretched-link" target="_blank"></a>
                     </div>
                 </div>
             </div>
@@ -53,7 +67,8 @@
                         <h5 class="card-title">짱아</h5>
                         <h6 class="card-subtitle mb-2 text-muted">짱구 동생</h6>
                         <p class="card-text">야야</p>
-                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8" class="card-link stretched-link" target="_blank"></a>
+                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8"
+                            class="card-link stretched-link" target="_blank"></a>
                     </div>
                 </div>
             </div>
@@ -65,7 +80,8 @@
                         <h5 class="card-title">철수</h5>
                         <h6 class="card-subtitle mb-2 text-muted">떡잎유치원</h6>
                         <p class="card-text">저는 철수입니다. 좋아하는 건 바닐라 아이스크림이예요.</p>
-                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8" class="card-link stretched-link" target="_blank"></a>
+                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8"
+                            class="card-link stretched-link" target="_blank"></a>
                     </div>
                 </div>
             </div>
@@ -77,7 +93,8 @@
                         <h5 class="card-title">유리</h5>
                         <h6 class="card-subtitle mb-2 text-muted">떡잎유치원</h6>
                         <p class="card-text">좋아하는 건 토끼 인형이야</p>
-                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8" class="card-link stretched-link" target="_blank"></a>
+                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8"
+                            class="card-link stretched-link" target="_blank"></a>
                     </div>
                 </div>
             </div>
@@ -89,7 +106,8 @@
                         <h5 class="card-title"> 훈이</h5>
                         <h6 class="card-subtitle mb-2 text-muted">떡잎유치원</h6>
                         <p class="card-text">안녕! 잘부탁해</p>
-                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8" class="card-link stretched-link" target="_blank"></a>
+                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8"
+                            class="card-link stretched-link" target="_blank"></a>
                     </div>
                 </div>
             </div>
@@ -100,13 +118,67 @@
                         <h5 class="card-title">맹구</h5>
                         <h6 class="card-subtitle mb-2 text-muted">떡잎유치원</h6>
                         <p class="card-text">......</p>
-                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8" class="card-link stretched-link" target="_blank"></a>
+                        <a href="https://www.notion.so/12-37f5d3ff916343cfb6dc1fab8807e8b8"
+                            class="card-link stretched-link" target="_blank"></a>
                     </div>
                 </div>
             </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="댓글을 입력하세요" id="commentInput">
+                        <button class="btn btn-primary" id="commentButton">댓글 작성</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 mb-4">
+                <div class="col-md-12">
+                    <ul class="list-group" id="commentList">
+
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
+
+        <script>
+            document.getElementById("commentButton").addEventListener("click", function () {
+                var commentInput = document.getElementById("commentInput");
+                var commentText = commentInput.value.trim();
+
+                if (commentText !== "") {
+                    var commentItem = createCommentItem(commentText);
+                    var commentList = document.getElementById("commentList");
+                    commentList.appendChild(commentItem);
+
+                    commentInput.value = "";
+                }
+            });
+
+            document.addEventListener("click", function (event) {
+                if (event.target.classList.contains("comment-delete-button")) {
+                    var commentItem = event.target.closest(".list-group-item");
+                    commentItem.remove();
+                }
+            });
+
+            function createCommentItem(commentText) {
+                var li = document.createElement("li");
+                li.className = "list-group-item";
+
+                var commentTextElement = document.createElement("span");
+                commentTextElement.textContent = commentText;
+
+                var deleteButton = document.createElement("button");
+                deleteButton.className = "btn btn-sm btn-danger comment-delete-button";
+                deleteButton.textContent = "삭제";
+
+                li.appendChild(commentTextElement);
+                li.appendChild(deleteButton);
+
+                return li;
+            }
+        </script>
 
 </body>
 
