@@ -15,7 +15,7 @@ def handle_comments():
     elif request.method == "POST":
         comment_text = request.form.get("comment")
         if comment_text:
-            new_comment = {"author": "Anonymous", "text": comment_text}
+            new_comment = {"author": "사용자ID 등록할 곳", "text": comment_text}
             comments.append(new_comment)
             return jsonify({"result": "success"})
         else:
