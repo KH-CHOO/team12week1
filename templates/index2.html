@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        .mypost {
+            width: 500px;
+            margin: 20px auto 20px auto;
+            padding: 20px 20px 20px 20px;
+
+            box-shadow: 0px 0px 3px 0px gray;
+        }
+
+        .form-control-content{
+            width: 500px;
+        }
+        .form-floating{
+            display: inline-block;
+        }
+        .mybtn {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 20px;
+        }
+
+        .mybtn > button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="mypost ">
+        <div class="human">
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Name" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea"></label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingTextarea" placeholder="Password">
+                <label for="floatingPassword"></label>
+            </div>
+        </div>
+
+        <div class="form-floating">
+            <textarea class="form-control-content" placeholder="하실 말씀을 남겨주세요" id="floatingTextarea2"
+                style="height: 100px"></textarea>
+            <label for="floatingTextarea2"></label>
+        </div>
+        <div class="mybtn">
+            <button type="button" class="btn btn-dark">기록하기</button>
+            <button type="button" class="btn btn-outline-dark">닫기</button>
+        </div>
+    </div>
+
+    
+</body>
+
+</html>

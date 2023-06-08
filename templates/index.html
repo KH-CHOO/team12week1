@@ -1,310 +1,206 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
-    <title>12조 소개</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            font-family: 'Gowun Dodum', sans-serif;
-        }
-
-        .mytitle {
-            width: 100%;
-            height: 250px;
-
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://spartacodingclub.kr/css/images/og_catalog.png');
-            background-position: center;
-            background-size: cover;
-
-            color: white;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mytitle>button {
-            width: 200px;
-            height: 50px;
-
-            background-color: transparent;
-            color: white;
-
-            border-radius: 50px;
-            border: 1px solid white;
-
-            margin-top: 10px;
-        }
-
-        .mytitle>button:hover {
-            border: 2px solid white;
-        }
-
-        .mycomment {
-            color: gray;
-        }
-
-        .mycards {
-            margin: 0px auto 20px auto;
-            width: 95%;
-            max-width: 1200px;
-        }
-
-        .mypost {
-            width: 95%;
-            max-width: 500px;
-            margin: 20px auto 0px auto;
-            padding: 20px;
-            box-shadow: 0px 0px 3px 0px gray;
-
-            display: none;
-        }
-
-        .mybtns {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-
-            margin-top: 20px;
-        }
-
-        .mybtns>button {
-            margin-right: 10px;
-        }
-
-        .order-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .order-info .input-group {
-            max-width: 400px;
-        }
-
-        .mybtn {
-            margin-top: 20px;
-        }
-        .mybox {
-            width: 95%;
-            max-width: 700px;
-            padding: 20px;
-            box-shadow: 0px 0px 10px 0px lightgrey;
-            margin: 20px auto;
-          }
-      
-          .mybucket {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-          }
-      
-          .mybucket>input {
-            width: 70%;
-          }
-      
-          .mybox>li {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-      
-            margin-bottom: 10px;
-            min-height: 48px;
-          }
-      
-          .mybox>li>h2 {
-            max-width: 75%;
-            font-size: 20px;
-            font-weight: 500;
-            margin-right: auto;
-            margin-bottom: 0px;
-          }
-      
-          .mybox>li>h2.done {
-            text-decoration: line-through;
-          }
-
-    </style>
-    <script>
-        $(document).ready(function () {
-            listing();
-        });
-
-        function listing() {
-            fetch('/movie').then((res) => res.json()).then((data) => {
-                let rows = data['result']
-                $('#cards-box').empty()
-                rows.forEach((a)=>{
-                    let comment = a['comment']
-                    let title = a['title']
-                    let desc = a['desc']
-                    let image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                    let star = a['star']
-
-                    let star_repeat = '⭐'.repeat(star)
-
-                    let temp_html = `<div class="col">
-                                        <div class="card h-100">
-                                            <img src="${image}"
-                                                class="card-img-top">
-                                            <div class="card-body">
-                                                <h5 class="card-title">사람이름</h5>
-                                                <p class="card-text">자기소개ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ</p>
-                                            </div>
-                                        </div>
-                                    </div>`
-                    $('#cards-box').append(temp_html)
-                })
-            })
-        }
-
-        function posting() {
-            let url = $('#url').val()
-            let comment = $('#comment').val()
-            let star = $('#star').val()
-
-            let formData = new FormData();
-            formData.append("url_give", url);
-            formData.append("comment_give", comment);
-            formData.append("star_give", star);
-
-            fetch('/movie', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                alert(data['msg'])
-                window.location.reload()
-            })
-        }
-
-        function open_box() {
-            $('#post-box').show()
-        }
-        function close_box() {
-            $('#post-box').hide()
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12조로 말할 것 같으면~</title>
 </head>
 
 <body>
-    <header data-bs-theme="light">
-        <div class="navbar shadow-sm">
-          <div class="container">
-            <a href="#" class="navbar-brand d-flex align-items-center">
-              <img src="https://velog.velcdn.com/images/khchoo/post/97b770a9-cddd-4820-b0ab-9344ffe00b6b/image.jpg" width="200" height="28"><strong></strong>
-            </a>
-          </div>
-        </div>
-      </header>
-      <section class="py-5 text-center container section-spacing">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-bold">12조</h1>
-            <p class="lead text-body-secondary" style="font-size: 30px;">🎉입학을 축하합니다🎉</p>
-          </div>
-        </div>
-      </section>
+    <!doctype html>
+    <html lang="en">
 
-    <div class="mycards">
-        <div class="row row-cols-3 row-cols-md-6 g-4" id="cards-box">
-            
-        </div>
-    </div>
-    <div class="mytitle">
-        <h1 style="font-weight: bold;">각오 한마디</h1>
-        <button onclick="open_box()"style="font-size: 20px;">작성하기</button>
-    </div>
-    <div class="mypost" id="post-box">
-        <div class="form-floating mb-3">
-            <input id="url" type="email" class="form-control" placeholder="name@example.com">
-            <label>영화URL</label>
-        </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">별점</label>
-            <select class="form-select" id="star">
-                <option selected>-- 선택하기 --</option>
-                <option value="1">⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-            </select>
-        </div>
-        <div class="form-floating">
-            <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
-            <label for="floatingTextarea2">코멘트</label>
-        </div>
-        <div class="mybtns">
-            <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-            <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-        </div>
-    </div>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 
-    <div class="mybox" id="bucket-list">
-    <li>
-        <h2>사람이름 댓글내용 댓글단시간?...........................................................................</h2>
-        <button type="button" class="btn btn-outline-secondary">수정</button><button type="button" class="btn btn-outline-secondary">삭제</button>
-    </li>
-    <li>
-        <h2>사람이름 댓글내용 댓글단시간?</h2>
-        <button type="button" class="btn btn-outline-secondary">수정</button><button type="button" class="btn btn-outline-secondary">삭제</button>
-    </li>
-    <li>
-        <h2>사람이름 댓글내용 댓글단시간?</h2>
-        <button type="button" class="btn btn-outline-secondary">수정</button><button type="button" class="btn btn-outline-secondary">삭제</button>
-    </li>
-    <li>
-        <h2>사람이름 댓글내용 댓글단시간?</h2>
-        <button type="button" class="btn btn-outline-secondary">수정</button><button type="button" class="btn btn-outline-secondary">삭제</button>
-    </li>
-    <li>
-        <h2>사람이름 댓글내용 댓글단시간?</h2>
-        <button type="button" class="btn btn-outline-secondary">수정</button><button type="button" class="btn btn-outline-secondary">삭제</button>
-    </li>
-    <li>
-        <h2>사람이름 댓글내용 댓글단시간?</h2>
-        <button type="button" class="btn btn-outline-secondary">수정</button><button type="button" class="btn btn-outline-secondary">삭제</button>
-    </li>
-    </div>
+        <title>12조로 말할 것 같으면~</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+            * {
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+
+            .mytitle {
+                color: white;
+
+                height: 250px;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://img.seoul.co.kr/img/upload/2022/06/15/SSI_20220615103257_V.png');
+                background-position: center;
+                background-size: cover;
+            }
+
+            .mycards {
+                width: 1500px;
+                margin: 60px auto 0px auto;
+            }
+
+            .col {
+                background-color: #DCDCDC;
+                height: 300px;
+                width: 450px;
+                border: 1px solid black;
+                border-radius: 13px;
+                box-shadow: 3px 3px 5px gray;
+                margin: 15px auto 15px auto;
+            }
+
+            .card_type {
+                margin-top: 10px;
+                font-size: larger;
+                font-weight: bold;
+                text-align: center;
+            }
+            .card-text{
+                text-align: center;
+            }
 
 
-    <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        </style>
+    </head>
+
+    <body>
+        <div class="mytitle">
+            <h1>저희 12조로 말할거 같으면...</h1>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-    
+        <div class="mycards">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div>
+                        <p class="card_type">이노캠 동북 2기 학생증</p>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                                    class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h7 class="card-title">이름 : 짱구</h5>
+                                        <p class="card-text">짧은 소개 : 안녕! 난 짱구라고 해! 떡잎마을 방범대를 하고 있어! 부리부리부리부리~~ 어 거기 이쁜누나
+                                            저랑 우유한잔 드실래요?</p>
+                                        <p class="card-text"><small class="text-muted">내가 더 궁금하다면 눌러봐! </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <p class="card_type">이노캠 동북 2기 학생증</p>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                                    class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h7 class="card-title">이름 : 짱구</h5>
+                                        <p class="card-text">짧은 소개 : 안녕! 난 짱구라고 해! 떡잎마을 방범대를 하고 있어! 부리부리부리부리~~ 어 거기 이쁜누나
+                                            저랑 우유한잔 드실래요?</p>
+                                        <p class="card-text"><small class="text-muted">내가 더 궁금하다면 눌러봐! </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <p class="card_type">이노캠 동북 2기 학생증</p>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                                    class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h7 class="card-title">이름 : 짱구</h7>
+                                    <p class="card-text">짧은 소개 : 안녕! 난 짱구라고 해! 떡잎마을 방범대를 하고 있어! 부리부리부리부리~~ 어 거기 이쁜누나 저랑
+                                        우유한잔 드실래요?</p>
+                                    <p class="date_f">유효기간 : 2023.09.09 </br>발 급 일 : 2023.06.07</p>
+                                    <p class="card-text"><small class="text-muted">내가 더 궁금하다면 눌러봐! </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <p class="card_type">이노캠 동북 2기 학생증</p>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                                    class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h7 class="card-title">이름 : 짱구</h5>
+                                        <p class="card-text">짧은 소개 : 안녕! 난 짱구라고 해! 떡잎마을 방범대를 하고 있어! 부리부리부리부리~~ 어 거기 이쁜누나
+                                            저랑 우유한잔 드실래요?</p>
+                                        <p class="card-text"><small class="text-muted">내가 더 궁금하다면 눌러봐! </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <p class="card_type">이노캠 동북 2기 학생증</p>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                                    class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h7 class="card-title">이름 : 짱구</h5>
+                                        <p class="card-text">짧은 소개 : 안녕! 난 짱구라고 해! 떡잎마을 방범대를 하고 있어! 부리부리부리부리~~ 어 거기 이쁜누나
+                                            저랑 우유한잔 드실래요?</p>
+                                        <p class="card-text"><small class="text-muted">내가 더 궁금하다면 눌러봐! </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <p class="card_type">이노캠 동북 2기 학생증</p>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                                    class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h7 class="card-title">이름 : 짱구</h5>
+                                        <p class="card-text">짧은 소개 : 안녕! 난 짱구라고 해! 떡잎마을 방범대를 하고 있어! 부리부리부리부리~~ 어 거기 이쁜누나
+                                            저랑 우유한잔 드실래요?</p>
+                                        <p class="card-text"><small class="text-muted">내가 더 궁금하다면 눌러봐! </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </body>
+
+    </html>
 </body>
 
 </html>
