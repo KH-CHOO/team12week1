@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-client = MongoClient('mongodb://localhost:27017')
+client = MongoClient('mongodb+srv://sparta:text@cluster0.2bqmgtn.mongodb.net/?retryWrites=true&w=majority')
 db = client['commentdb']
 collection = db['comments']
 @app.route('/comments', methods=['GET'])
