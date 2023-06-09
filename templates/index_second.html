@@ -289,7 +289,7 @@
             formData.append("comment_pw_give", comment_pw);
             formData.append("comment", comment);
 
-            fetch('/comments/'${}, { method: "PUT", body: formData }).then((res) => res.json()).then((data) => {
+            fetch('/comments', { method: "PUT", body: formData }).then((res) => res.json()).then((data) => {
                 alert(data['msg'])
                 window.location.reload()
             });
