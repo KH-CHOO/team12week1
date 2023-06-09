@@ -12,7 +12,7 @@ def home():
     return render_template('index.html')
 
 @app.route("/members", methods=["GET"])
-def movie_get():
+def member_get():
     all_members = list(db.members.find({},{'_id':False}))
     return jsonify({'result':all_members})
 

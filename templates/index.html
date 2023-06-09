@@ -7,10 +7,12 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
     <title>이노캠 입학식</title>
 
@@ -51,7 +53,7 @@
         }
 
         .mytitle>button:hover {
-            border: 2px solid white;
+            border: 4px solid white;
         }
 
         .mycomment {
@@ -142,6 +144,13 @@
         .mybox>li>h2.done {
             text-decoration: line-through;
         }
+
+        .card:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            transform: scale(1.02);
+            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
     </style>
 
     <script>
@@ -154,7 +163,7 @@
                 let rows = data['result']
                 $('#cards-box').empty()
                 rows.forEach((a) => {
-                    let image = "https://parallel-lightning-940.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fb858e7-1275-4533-9ece-b210cae73da0%2F230609test.png?id=a3a7e01b-3c14-4165-bed9-017285d30af3&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=2000&userId=&cache=v2"
+                    let image = a['member_img_url']
                     let temp_html = `<div class="col">
                                         <div class="card h-100">
                                             <img src="${image}"
@@ -167,6 +176,7 @@
 
             fetch('/comments').then((res) => res.json()).then((data) => {
                 let rows = data['result']
+                $('#comments-box').empty();
                 let count = 0
                 rows.forEach((a) => {
                     count++
@@ -246,7 +256,7 @@
         }
 
         function delete_comment(num) {
-            let comment_id = num 
+            let comment_id = num
             let comment_pw = document.getElementById(`delete_password_input_${num}`).value;
 
             let formData = new FormData();
@@ -310,12 +320,38 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="cards-box">
             <div class="col">
                 <div class="card h-100">
-                    <img src="https://previews.123rf.com/images/photoplotnikov/photoplotnikov1610/photoplotnikov161000024/64932244-id-card-isolated-on-white-background-identification-card-icon-business-identity-id-card-icon.jpg"
+                    <img src="https://parallel-lightning-940.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fb858e7-1275-4533-9ece-b210cae73da0%2F230609test.png?id=a3a7e01b-3c14-4165-bed9-017285d30af3&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=2000&userId=&cache=v2"
                         class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">&nbsp;</h5>
-                        <p class="card-text">&nbsp;</p>
-                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://parallel-lightning-940.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fb858e7-1275-4533-9ece-b210cae73da0%2F230609test.png?id=a3a7e01b-3c14-4165-bed9-017285d30af3&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=2000&userId=&cache=v2"
+                        class="card-img-top">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://parallel-lightning-940.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fb858e7-1275-4533-9ece-b210cae73da0%2F230609test.png?id=a3a7e01b-3c14-4165-bed9-017285d30af3&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=2000&userId=&cache=v2"
+                        class="card-img-top">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://parallel-lightning-940.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fb858e7-1275-4533-9ece-b210cae73da0%2F230609test.png?id=a3a7e01b-3c14-4165-bed9-017285d30af3&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=2000&userId=&cache=v2"
+                        class="card-img-top">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://parallel-lightning-940.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fb858e7-1275-4533-9ece-b210cae73da0%2F230609test.png?id=a3a7e01b-3c14-4165-bed9-017285d30af3&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=2000&userId=&cache=v2"
+                        class="card-img-top">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://parallel-lightning-940.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fb858e7-1275-4533-9ece-b210cae73da0%2F230609test.png?id=a3a7e01b-3c14-4165-bed9-017285d30af3&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=2000&userId=&cache=v2"
+                        class="card-img-top">
                 </div>
             </div>
         </div>
@@ -345,7 +381,11 @@
 
 
     <div class="mybox" id="comments-box" style="margin-bottom: 30px;">
-        <!-- Comment items will be dynamically added here -->
+        <li><span style="display: none;" id="commentIDnum"></span>
+            <h2></h2>
+            <button type="button" class="btn btn-outline-secondary">수정</button>&nbsp;  
+            <button type="button" class="btn btn-outline-danger">삭제</button>
+        </li>
     </div>
 
 </body>
