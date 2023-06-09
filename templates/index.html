@@ -154,15 +154,11 @@
                 let rows = data['result']
                 $('#cards-box').empty()
                 rows.forEach((a) => {
-                    let image = "https://previews.123rf.com/images/photoplotnikov/photoplotnikov1610/photoplotnikov161000024/64932244-id-card-isolated-on-white-background-identification-card-icon-business-identity-id-card-icon.jpg"
+                    let image = "https://parallel-lightning-940.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fb858e7-1275-4533-9ece-b210cae73da0%2F230609test.png?id=a3a7e01b-3c14-4165-bed9-017285d30af3&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=2000&userId=&cache=v2"
                     let temp_html = `<div class="col">
                                         <div class="card h-100">
                                             <img src="${image}"
                                                 class="card-img-top">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${a['member_name']}</h5>
-                                                <p class="card-text">${a['member_img_url']}</p>
-                                            </div>
                                         </div>
                                     </div>`;
                     $('#cards-box').append(temp_html);
@@ -311,7 +307,7 @@
     </section>
 
     <div class="mycards">
-        <div class="row row-cols-3 row-cols-md-6 g-4" id="cards-box">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="cards-box">
             <div class="col">
                 <div class="card h-100">
                     <img src="https://previews.123rf.com/images/photoplotnikov/photoplotnikov1610/photoplotnikov161000024/64932244-id-card-isolated-on-white-background-identification-card-icon-business-identity-id-card-icon.jpg"
