@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <title>소개 페이지</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .my-self {
+            --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+            font-family: var(--bs-font-sans-serif);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+            width: 100%;
+            padding-right: var(--bs-gutter-x, .75rem);
+            padding-left: var(--bs-gutter-x, .75rem);
+            margin-right: auto;
+            margin-left: auto;
+            max-width: 960px;
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
+            text-align: center !important;
+        }
+
+        .card-img-top {
+            margin: 10px auto 10px auto;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+        }
+
+        body {
+            background-color: #e9ebee;
+        }
+
+        .container-comment {
+            width: 900px;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .be-comment-block {
+            margin-bottom: 50px !important;
+            border: 1px solid #edeff2;
+            border-radius: 2px;
+            padding: 50px 70px;
+            border: 1px solid #ffffff;
+        }
+
+        .comments-title {
+            font-size: 16px;
+            color: #262626;
+            margin-bottom: 15px;
+            font-family: 'Conv_helveticaneuecyr-bold';
+        }
+
+        .be-img-comment {
+            width: 60px;
+            height: 60px;
+            float: left;
+            margin-bottom: 15px;
+        }
+
+        .be-ava-comment {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .be-comment-content {
+            margin-left: 80px;
+        }
+
+        .be-comment-content span {
+            display: inline-block;
+            width: 49%;
+            margin-bottom: 15px;
+        }
+
+        .be-comment-name {
+            font-size: 13px;
+            font-family: 'Conv_helveticaneuecyr-bold';
+        }
+
+        .be-comment-content a {
+            color: #383b43;
+        }
+
+        .be-comment-content span {
+            display: inline-block;
+            width: 49%;
+            margin-bottom: 15px;
+        }
+
+        .be-comment-text {
+            font-size: 13px;
+            line-height: 18px;
+            color: #7a8192;
+            display: block;
+            background: #f6f6f7;
+            border: 1px solid #edeff2;
+            padding: 15px 20px 20px 20px;
+        }
+
+        .post-box {
+            margin-bottom: 20px;
+        }
+
+        .mypost {
+            margin-bottom: 10px;
+        }
+
+        .form-group.fl_icon .icon {
+            position: absolute;
+            top: 1px;
+            left: 16px;
+            width: 48px;
+            height: 48px;
+            background: #f6f6f7;
+            color: #b5b8c2;
+            text-align: center;
+            line-height: 50px;
+            -webkit-border-top-left-radius: 2px;
+            -webkit-border-bottom-left-radius: 2px;
+            -moz-border-radius-topleft: 2px;
+            -moz-border-radius-bottomleft: 2px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+
+        .form-group .form-input {
+            font-size: 13px;
+            line-height: 50px;
+            font-weight: 400;
+            color: #b4b7c1;
+            width: 100%;
+            height: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: 1px solid #edeff2;
+            border-radius: 3px;
+        }
+
+        .btn btn-light btn-sm {
+            float: right;
+        }
+
+        .form-group.fl_icon .form-input {
+            padding-left: 70px;
+        }
+
+        .form-group textarea.form-input {
+            height: 150px;
+        }
+
+        .btn-btn-outline-secondary {
+            border: none;
+            background: #f6f6f7;
+        }
+
+        .btn-reset {
+            float: right;
+            margin-bottom: 5px;
+        }
+    </style>
+
+
+    <script>
+
+        $(document).ready(function () {
+            listing();
+        });
+        function listing() {
+            fetch('/comments').then((res) => res.json()).then((data) => {
+                let rows = data['result']
+                $('#comments-box').empty()
+                rows.forEach((a) => {
+                    let num = a['comment-id']
+                    let name = a['comment-name']
+                    let comment = a['comment']// <li>댓글 한줄 코드 -> <div 기록하기,닫기 수정 box> -> <div 비번 입력후 삭제box>
+                    let temp_html = `
+                                    <div class="be-comment" id="commentIDnum">
+                                        <div class="be-img-comment">
+                                            <a href="blog-detail-2.html">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                                            </a>
+                                        </div>
+                                        <div class="be-comment-content">
+                                            <span class="be-comment-name">
+                                                <a href="blog-detail-2.html">${name}</a>
+                                            </span>
+                                            <div class="btn-reset">
+                                                    <button onclick="open_comment_edit_box(${num})" type="button" class="btn btn-light btn-sm">✏️</button>
+                                                    <button type="button" onclick="open_comment_delete_box(${num})"
+                                                    class="btn btn-light btn-sm">❌</button>
+                                            </div>
+                                            <p class="be-comment-text">
+                                                ${comment}
+                                            </p>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="mypost" style=" display: none;" id="comment_edit_box_${num}">
+                                        <div class="form-floating mb-3">
+                                            <input type ="password" id="password_input_${num}" class="form-control">
+                                            <label for="floatingInput">비밀번호</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <textarea id="comment_input_${num}" class="form-control"></textarea>
+                                            <label for="floatingTextarea2">내용</label>
+                                        </div>
+                                        <div class="mybtns">
+                                            <button onclick="edit_comment(${num})" type="button" class="btn btn-dark">✏️수정</button>
+                                            <button onclick="close_comment_edit_box(${num})" type="button" class="btn btn-outline-dark">닫기</button>
+                                        </div>
+                                    </div>
+                                    <div class="mypost" style=" display: none;"id="comment_delete_box_${num}">
+                                        <div class="form-floating mb-3">
+                                            <input type ="password" id="delete_password_input_${num}" class="form-control">
+                                            <label>비밀번호</label>
+                                        </div>
+                                        <div class="mybtns">
+                                            <button onclick="delete_comment(${num})" type="button" class="btn btn-dark">❌삭제</button>
+                                            <button onclick="close_comment_delete_box(${num})" type="button" class="btn btn-outline-dark">닫기</button>
+                                        </div>
+                                    </div>`;
+
+                    $('#comments-box').append(temp_html);
+                });
+            });
+        }
+
+        function posting() {
+            let comment_name = $('#comment-name').val()
+            let comment_pw = $('#comment-pw').val()
+            let comment = $('#comment').val()
+
+            let formData = new FormData();
+            formData.append("comment_name_give", comment_name);
+            formData.append("comment_pw_give", comment_pw);
+            formData.append("comment", comment);
+
+            fetch('/comments', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+                alert(data['msg'])
+                window.location.reload()
+            });
+
+            let formData2 = new FormData();
+            formData2.append("comment_name_give", comment_name);
+            formData2.append("comment_pw_give", comment_pw);
+            formData2.append("comment", comment);
+            fetch('/members', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+
+
+            });
+        }
+        function edit_comment() {
+            let comment_id = $('#commentIDnum').val()
+            let comment_name = $('#comment-name').val()
+            let comment_pw = $('#comment-pw').val()
+            let comment = $('#comment').val()
+
+            let formData = new FormData();
+            formData.append("comment_name_give", comment_name);
+            formData.append("comment_pw_give", comment_pw);
+            formData.append("comment", comment);
+
+            fetch('/comments/'${}, { method: "PUT", body: formData }).then((res) => res.json()).then((data) => {
+                alert(data['msg'])
+                window.location.reload()
+            });
+        }
+        function delete_comment() {
+            let comment_id = $('#commentIDnum').val()
+            let comment_name = $('#comment-name').val()
+            let comment_pw = $('#comment-pw').val()
+            let comment = $('#comment').val()
+
+            let formData = new FormData();
+            formData.append("comment_id_give", comment_id);
+            formData.append("comment_name_give", comment_name);
+            formData.append("comment_pw_give", comment_pw);
+            formData.append("comment", comment);
+
+            fetch('/comments', { method: "DELETE", body: formData }).then((res) => res.json()).then((data) => {
+                alert(data['msg'])
+                window.location.reload()
+            });
+        }
+        function open_box() {
+            $('#post-box').show()
+        }
+        function close_box() {
+            $('#post-box').hide()
+        }
+
+        function open_comment_edit_box(n) {
+            $('#comment_edit_box_' + n).show()
+            $('#comment_delete_box_' + n).hide()
+        }
+        function close_comment_edit_box(n) {
+            $('#comment_edit_box_' + n).hide()
+        }
+        function open_comment_delete_box(n) {
+            $('#comment_edit_box_' + n).hide()
+            $('#comment_delete_box_' + n).show()
+        }
+        function close_comment_delete_box(n) {
+            $('#comment_delete_box_' + n).hide()
+        }
+    </script>
+</head>
+
+<body>
+    <header data-bs-theme="light">
+        <div class="navbar navbar-dark bg-light shadow-sm">
+            <div class="container">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <img src="https://velog.velcdn.com/images/khchoo/post/97b770a9-cddd-4820-b0ab-9344ffe00b6b/image.jpg"
+                        width="200" height="28" style="max-width: 100%; height: auto;" class="me-2"><strong></strong>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="my-self">
+            <div>
+                <h1>어서와 12조 방명록은 처음이지?</h1>
+                <p>
+                <div class="image_self">
+                    <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9c1033de-fe02-4bd5-86a4-b71f6c0083b9%2FKakaoTalk_20230608_150414525.jpg?id=5384ea44-8a6e-403d-843b-51df5d1790cc&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=480&userId=6a2c6610-d956-4b50-8734-c4060ec31b86&cache=v2"
+                        class="card-img-top" alt="...">
+                </div>
+                </p>
+                <p>안녕하세요! 제 이름은 유현주 입니다! 만나서 반가워요💗 저에대해 소개해 볼까해요!
+                        일단 제 MBTI 는 ISFP로 뭐해? 라고 물어보신다면 항상 "누워있어" 라고 답할 수 있는 저는 잠을 정말 사랑합니다ㅎ
+                        귀찮음이 흘러 넘치지만 좋아하는 건 또 열심히 꾸준히하고 있으니 너무 게으르게 보진마세요! 저는 요즘 요리와
+                        운동에 취미를 붙였답니다! 다들 무엇을 좋아하시고, 쉴 때는 주로 어떤 일을 하시나요?</p>
+                <button type="button" onclick="open_box()" class="btn btn-light">방명록을 작성하고 싶다면?✅</button>
+            </div>
+        </section>
+
+        <div class="container-comment">
+            <div class="be-comment-block">
+
+                <div class="post-box" id="post-box" style="display: none;">
+                    <form class="form-block">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group fl_icon">
+                                    <div class="icon"><i class="fa fa-user"></i></div>
+                                    <input  id="comment-name" class="form-input" type="text" placeholder="Your name">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group fl_icon">
+                                    <div class="icon"><i class="fa fa-envelope-o"></i></div>
+                                    <input id="comment-pw" input type="password" class="form-input" type="text"
+                                        placeholder="Your password">
+                                </div>
+                            </div>
+                            <p></p>
+                            <div class="col-xs-12" style="margin-bottom: 10px;">
+                                <div class="form-group">
+                                    <textarea id="comment" class="form-input" required="" placeholder="Your text"></textarea>
+                                </div>
+                            </div>
+                            <div class="mybtns">
+                                <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
+                                <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="mybox" id="comments-box" style="margin-bottom: 30px;">
+                    <!-- Comment items will be dynamically added here -->
+                </div>
+                <h1 class="comments-title">Comments(3)</h1>
+                <div class="be-comment" id="comments-box">
+                    <div class="be-img-comment">
+                        <a href="blog-detail-2.html">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                        </a>
+                    </div>
+                    <div class="be-comment-content">
+                        <span class="be-comment-name">
+                            <a href="blog-detail-2.html">Ravi Sah</a>
+                        </span>
+                        <p class="be-comment-text">
+                            Pellentesque gravida tristique ultrices.
+                            Sed blandit varius mauris, vel volutpat urna hendrerit id.
+                            Curabitur rutrum dolor gravida turpis tristique efficitur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+
+</body>
+
+</html>

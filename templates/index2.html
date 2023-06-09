@@ -1,29 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <title>12조 소개</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
     <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .mytitle {
+            width: 100%;
+            height: 250px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://spartacodingclub.kr/css/images/og_catalog.png');
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mytitle>button {
+            width: 200px;
+            height: 50px;
+
+            background-color: transparent;
+            color: white;
+
+            border-radius: 50px;
+            border: 1px solid white;
+
+            margin-top: 10px;
+        }
+
+        .mytitle>button:hover {
+            border: 2px solid white;
+        }
+
+        .mycomment {
+            color: gray;
+        }
+
+        .card-myself {
+            margin: 100px auto 0px 100px;
+            float: left;
+        }
+
+        .image_self {
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-img-top {
+            width: 170px;
+            height: 250px;
+        }
+
         .mypost {
-            width: 500px;
-            margin: 20px auto 20px auto;
-            padding: 20px 20px 20px 20px;
-
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
             box-shadow: 0px 0px 3px 0px gray;
+            display: none;
+
         }
 
-        .form-control-content{
-            width: 500px;
-        }
-        .form-floating{
-            display: inline-block;
-        }
-        .mybtn {
+        .mybtns {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -32,38 +91,245 @@
             margin-top: 20px;
         }
 
-        .mybtn > button {
+        .mybtns>button {
             margin-right: 10px;
         }
+
+        .mybtn {
+            margin-top: 20px;
+        }
+
+        .mybox {
+            float: right;
+            width: 100%;
+            max-width: 700px;
+            overflow-y: scroll; height: 700px;;
+            box-shadow: 0px 0px 10px 0px lightgrey;
+            margin: 100px 80px auto auto;
+        }
+
+        .mybucket {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mybucket>input {
+            width: 70%;
+        }
+
+        .mybox>li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 10px;
+            min-height: 48px;
+        }
+
+        .mybox>li>h2 {
+            max-width: 75%;
+            font-size: 17px;
+            font-weight: 500;
+            margin-right: auto;
+            margin-bottom: 0px;
+        }
+
+        .mybox>li>h2.done {
+            text-decoration: line-through;
+        }
+
+        .mybox>li>button {
+            margin-right: 10px;
+        }
+
+        .li {
+            height: 500px;
+        }
     </style>
+    <script>
+        $(document).ready(function () {
+            listing();
+        });
+
+        function listing() {
+            fetch('/comments').then((res) => res.json()).then((data) => {
+                let rows = data['result']
+                rows.forEach((a) => {
+                    let num = a['comment-id']
+                    let name = a['comment-name']
+                    let comment = a['comment']// <li>댓글 한줄 코드 -> <div 기록하기,닫기 수정 box> -> <div 비번 입력후 삭제box>
+                    let temp_html = `
+                                    <li><span style=" display: none;" id="commentIDnum">${num}</span>
+                                        <p>${name}'s 각오 : ${comment}</p>
+                                        <button onclick="open_comment_edit_box(${num})" type="button" class="btn btn-outline-secondary">수정</button>
+                                        <button type="button" onclick="open_comment_delete_box(${num})"
+                                        class="btn btn-outline-secondary">삭제</button>
+                                    </li>
+                                    
+                                    <div class="mypost" id="comment_edit_box_${num}">
+                                            <div class="form-floating mb-3">
+                                                <input id="password_input_${num}" class="form-control">
+                                                <label>비밀번호</label>
+                                            </div>
+                                            <div class="form-floating">
+                                                <textarea id="comment_input_${num}" class="form-control"></textarea>
+                                                <label for="floatingTextarea2">내용</label>
+                                            </div>
+                                            <div class="mybtns">
+                                                <button onclick="edit_comment(${num})" type="button" class="btn btn-dark">✏️수정</button>
+                                                <button onclick="close_comment_edit_box(${num})" type="button" class="btn btn-outline-dark">닫기</button>
+                                            </div>
+                                        </div>
+                                        <div class="mypost" id="comment_delete_box_${num}">
+                                            <div class="form-floating mb-3">
+                                                <input id="delete_password_input_${num}" class="form-control">
+                                                <label>비밀번호</label>
+                                            </div>
+                                            <div class="mybtns">
+                                                <button onclick="delete_comment(${num})" type="button" class="btn btn-dark">❌삭제</button>
+                                                <button onclick="close_comment_delete_box(${num})" type="button" class="btn btn-outline-dark">닫기</button>
+                                            </div>
+                                        </div> `;
+                    $('#comments-box').append(temp_html);
+                });
+            });
+        }
+
+        function posting() {
+            let comment_name = $('#comment-name').val()
+            let comment_pw = $('#comment-pw').val()
+            let comment = $('#comment').val()
+
+            let formData = new FormData();
+            formData.append("comment_name_give", comment_name);
+            formData.append("comment_pw_give", comment_pw);
+            formData.append("comment", comment);
+
+            fetch('/comments', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+                alert(data['msg'])
+                window.location.reload()
+            });
+
+            let formData2 = new FormData();
+            formData2.append("comment_name_give", comment_name);
+            formData2.append("comment_pw_give", comment_pw);
+            formData2.append("comment", comment);
+            fetch('/members', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+
+
+            });
+        }
+        function edit_comment() {
+            let comment_id = $('#commentIDnum').val()
+            let comment_name = $('#comment-name').val()
+            let comment_pw = $('#comment-pw').val()
+            let comment = $('#comment').val()
+
+            let formData = new FormData();
+            formData.append("comment_name_give", comment_name);
+            formData.append("comment_pw_give", comment_pw);
+            formData.append("comment", comment);
+
+            fetch('/comments', { method: "PUT", body: formData }).then((res) => res.json()).then((data) => {
+                alert(data['msg'])
+                window.location.reload()
+            });
+        }
+        function delete_comment() {
+            let comment_id = $('#commentIDnum').val()
+            let comment_name = $('#comment-name').val()
+            let comment_pw = $('#comment-pw').val()
+            let comment = $('#comment').val()
+
+            let formData = new FormData();
+            formData.append("comment_id_give", comment_id);
+            formData.append("comment_name_give", comment_name);
+            formData.append("comment_pw_give", comment_pw);
+            formData.append("comment", comment);
+
+            fetch('/comments', { method: "DELETE", body: formData }).then((res) => res.json()).then((data) => {
+                alert(data['msg'])
+                window.location.reload()
+            });
+        }
+        function open_box() {
+            $('#post-box').show()
+        }
+        function close_box() {
+            $('#post-box').hide()
+        }
+
+        function open_comment_edit_box(n) {
+            $('#comment_edit_box_' + n).show()
+            $('#comment_delete_box_' + n).hide()
+        }
+        function close_comment_edit_box(n) {
+            $('#comment_edit_box_' + n).hide()
+        }
+        function open_comment_delete_box(n) {
+            $('#comment_edit_box_' + n).hide()
+            $('#comment_delete_box_' + n).show()
+        }
+        function close_comment_delete_box(n) {
+            $('#comment_delete_box_' + n).hide()
+        }
+    </script>
 </head>
 
 <body>
-    
-    <div class="mypost ">
-        <div class="human">
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Name" id="floatingTextarea"></textarea>
-                <label for="floatingTextarea"></label>
+    <header data-bs-theme="light">
+        <div class="navbar navbar-dark bg-light shadow-sm">
+            <div class="container">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <img src="https://velog.velcdn.com/images/khchoo/post/97b770a9-cddd-4820-b0ab-9344ffe00b6b/image.jpg"
+                        width="200" height="28" style="max-width: 100%; height: auto;" class="me-2"><strong></strong>
+                </a>
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingTextarea" placeholder="Password">
-                <label for="floatingPassword"></label>
+        </div>
+    </header>
+    <div>
+        <div class="card-myself" style="width: 450px;">
+            <div>
+                <div class="image_self">
+                    <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9c1033de-fe02-4bd5-86a4-b71f6c0083b9%2FKakaoTalk_20230608_150414525.jpg?id=5384ea44-8a6e-403d-843b-51df5d1790cc&table=block&spaceId=a51fdcd6-7f93-4e7c-a23a-d350714bd84c&width=480&userId=6a2c6610-d956-4b50-8734-c4060ec31b86&cache=v2"
+                        class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">유현주</h5>
+                    <p class="card-text">안녕하세요! 제 이름은 유현주 입니다! 만나서 반가워요💗 저에대해 소개해 볼까해요!
+                        일단 제 MBTI 는 ISFP로 뭐해? 라고 물어보신다면 항상 "누워있어" 라고 답할 수 있는 저는 잠을 정말 사랑합니다ㅎ
+                        귀찮음이 흘러 넘치지만 좋아하는 건 또 열심히 꾸준히하고 있으니 너무 게으르게 보진마세요! 저는 요즘 요리와
+                        운동에 취미를 붙였답니다! 다들 무엇을 좋아하시고, 쉴 때는 주로 어떤 일을 하시나요? </p>
+                    <button onclick="open_box()" style="font-size: 20px;">작성하기</button>
+                </div>
+            </div>
+            <div class="mypost" id="post-box">
+                <div class="form-floating mb-3">
+                    <input id="comment-name" class="form-control">
+                    <label>이름</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" input id="comment-pw" class="form-control">
+                    <label>비밀번호</label>
+                </div>
+                <div class="form-floating">
+                    <textarea id="comment" class="form-control"></textarea>
+                    <label for="floatingTextarea2">클릭하여 작성</label>
+                </div>
+                <div class="mybtns">
+                    <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
+                    <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+                </div>
             </div>
         </div>
 
-        <div class="form-floating">
-            <textarea class="form-control-content" placeholder="하실 말씀을 남겨주세요" id="floatingTextarea2"
-                style="height: 100px"></textarea>
-            <label for="floatingTextarea2"></label>
-        </div>
-        <div class="mybtn">
-            <button type="button" class="btn btn-dark">기록하기</button>
-            <button type="button" class="btn btn-outline-dark">닫기</button>
+        <div class="mybox" id="comments-box" style="margin-bottom: 30px;">
+            <!-- Comment items will be dynamically added here -->
         </div>
     </div>
-
-    
 </body>
 
 </html>
